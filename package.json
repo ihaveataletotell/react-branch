@@ -2,8 +2,7 @@
   "name": "whip-jsx-vc",
   "version": "1.0.0",
   "description": "React JSX helper components for convenient and declarative development",
-  "main": "lib/main.js",
-  "types": "lib/types.ts",
+  "main": "src/index.ts",
   "scripts": {
     "build::module": "webpack --config webpack.config.ts --mode=production",
     "view::develop": "webpack serve --config webpack.view.config.ts --env viewMode --mode development"
@@ -44,7 +43,6 @@
     "webpack-dev-server": "3.11.2"
   },
   "peerDependencies": {
-    "react": "16+",
-    "classnames": "2+"
+    "react": "^16.0.0 || ^17.0.0"
   }
 }
