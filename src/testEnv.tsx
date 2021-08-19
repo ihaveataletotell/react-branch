@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
+import {VC} from 'whip-jsx-vc';
 
 export const TestEnv = (): React.ReactElement => {
 	return (
-		<div>
+		<VC.Full>
 			{'app is working'}
-		</div>
+		</VC.Full>
 	);
 }
 

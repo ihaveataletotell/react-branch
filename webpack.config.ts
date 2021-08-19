@@ -1,7 +1,7 @@
 import * as Webpack from 'webpack';
 import * as path from 'path';
-import {ExportArgv, ExportEnv, Product} from 'webpack.types';
-import {getJsMinimizer, getPlugins, getRules} from 'webpack.common';
+import {ExportArgv, ExportEnv, Product} from './webpack.types';
+import {getJsMinimizer, getPlugins, getRules} from './webpack.common';
 
 module.exports = (env: ExportEnv, argv: ExportArgv | undefined): Webpack.Configuration => {
 	const product: Product = {};
@@ -13,7 +13,6 @@ module.exports = (env: ExportEnv, argv: ExportArgv | undefined): Webpack.Configu
 		},
 		externals: {
 			react: 'commonjs react',
-			classnames: 'commonjs classnames',
 		},
 		module: {
 			rules: getRules(product, env, argv),
