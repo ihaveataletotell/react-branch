@@ -1,7 +1,7 @@
 {
   "name": "react-branch",
   "version": "1.0.1",
-  "description": "React Branch Components - React helper conditional components for convenient and declarative development",
+  "description": "React helper conditional components for convenient and declarative development",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
   "scripts": {
