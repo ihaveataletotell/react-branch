@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {VC} from 'src';
 
 declare namespace VC {
 	interface StyledProps extends WrapProps, WithClass, WithStyle, WithSlot {
@@ -36,10 +37,6 @@ declare namespace VC {
 		children: [React.ReactNode, React.ReactNode];
 		if: boolean;
 	}
-}
-
-declare namespace VC {
-	export const Styled: React.ComponentType<StyledProps>;
 }
 
 export = VC;
