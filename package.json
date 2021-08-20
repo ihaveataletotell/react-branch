@@ -1,5 +1,5 @@
 {
-  "name": "react-branch",
+  "name": "@drunk-coachman/react-branch",
   "version": "1.0.1",
   "description": "React helper conditional components for convenient and declarative development",
   "main": "lib/main.js",
@@ -18,7 +18,10 @@
     "rendering",
     "if-else"
   ],
-  "author": "drunk-coachman",
+  "author": {
+    "name" : "Maxim Odorodko",
+    "email" : "max.odor27@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^17.0.18",
