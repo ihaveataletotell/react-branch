@@ -21,7 +21,7 @@ module.exports = (env: ExportEnv, argv: ExportArgv | undefined): Webpack.Configu
 			minimizer: getJsMinimizer(product),
 		},
 		output: {
-			library: 'whip-jsx-vc',
+			library: 'react-branch',
 			libraryTarget: 'umd',
 			filename: 'main.js',
 			path: `${__dirname}/lib`,
@@ -32,6 +32,6 @@ module.exports = (env: ExportEnv, argv: ExportArgv | undefined): Webpack.Configu
 			extensions: ['.js', '.ts', '.tsx'],
 			modules: ['node_library', 'node_modules', 'src', '.'],
 		},
-		stats: 'verbose',
+		stats: env.analyze ? 'verbose' : undefined,
 	};
 };
