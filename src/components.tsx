@@ -38,7 +38,7 @@ function ConditionalComponentBranch(props: RBC.BranchProps): React.ReactNode {
 	return props.children[1];
 }
 
-export const CCWrap = ConditionalComponentWrapper;
+export const CCWrap = ConditionalComponentWrapper as React.FunctionComponent<RBC.WrapProps>;
 export const CCMain = React.memo(ConditionalComponent as React.FunctionComponent<RBC.MainProps>);
-export const CCIfChildren = ConditionalComponentIfChildren;
-export const CCIfElse = ConditionalComponentBranch;
+export const CCIfChildren = ConditionalComponentIfChildren as React.FunctionComponent<RBC.MainProps>;
+export const CCIfElse = ConditionalComponentBranch as React.FunctionComponent<RBC.BranchProps>;
