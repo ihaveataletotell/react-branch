@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as VC from 'lib/types';
 
 // Если doNotRender == true, для всех чайлдов компонента:
 // будет выполнен вызов React.createElement

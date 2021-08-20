@@ -1,4 +1,4 @@
-/// <reference path="types.d.ts" />
+/// <reference path="vcTypes.ts" />
 
 import * as React from 'react';
 

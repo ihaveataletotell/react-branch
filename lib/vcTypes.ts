@@ -1,7 +1,5 @@
-import * as React from 'react';
-
 declare namespace VC {
-	export interface StyledProps extends WrapProps, WithClass, WithStyle, WithSlot {
+	interface StyledProps extends WrapProps, WithClass, WithStyle, WithSlot {
 	}
 
 	interface FullProps<T extends HTMLElement = HTMLDivElement> extends WrapProps, React.HTMLAttributes<T>, WithRootRef<T> {
@@ -37,6 +35,3 @@ declare namespace VC {
 		if: boolean;
 	}
 }
-
-export = VC;
-export as namespace VC;
