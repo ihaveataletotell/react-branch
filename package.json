@@ -14,10 +14,12 @@
   },
   "keywords": [
     "react",
+    "branch",
     "jsx",
     "declarative",
     "condition",
-    "rendering"
+    "rendering",
+    "if-else"
   ],
   "author": "drunk-coachman",
   "license": "ISC",
