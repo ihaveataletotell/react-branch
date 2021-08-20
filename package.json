@@ -20,7 +20,8 @@
   ],
   "author": {
     "name" : "Maxim Odorodko",
-    "email" : "max.odor27@gmail.com"
+    "email" : "max.odor27@gmail.com",
+    "url": "https://www.npmjs.com/~ihaveataletotell"
   },
   "license": "ISC",
   "devDependencies": {
