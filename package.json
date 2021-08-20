@@ -1,16 +1,13 @@
 {
   "name": "react-branch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Branch Components - React helper conditional components for convenient and declarative development",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
   "scripts": {
     "build::module": "webpack --config webpack.config.ts --mode=production",
-    "build::analyze": "webpack --config webpack.config.ts --env analyze --mode=production"
-  },
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@git.devtake.tech:1212/ihaveataletotell/lib-whip-jsx-vc.git"
+    "build::analyze": "webpack --config webpack.config.ts --env analyze --mode=production",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "react",
@@ -34,5 +31,9 @@
   },
   "peerDependencies": {
     "react": "^16.0.0 || ^17.0.0"
+  },
+  "directories": {
+    "lib": "lib",
+    "src": "src"
   }
 }
