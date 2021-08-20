@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "React JSX helper components for convenient and declarative development",
   "main": "lib/main.js",
-  "types": "lib/index.d.ts",
+  "types": "lib/main.d.ts",
   "scripts": {
     "build::module": "webpack --config webpack.config.ts --mode=production",
     "view::develop": "webpack serve --config webpack.view.config.ts --env viewMode --mode development"
