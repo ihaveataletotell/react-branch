@@ -5,12 +5,12 @@ const getComponentName = (Component: React.ComponentType): string => {
 }
 
 interface PredicateProps {
-	slotDoNotMount?: React.ReactNode;
+	slotDoNotAppear?: React.ReactNode;
 }
 
 type WithPredicateProps<T extends React.ComponentType<any>, P extends PredicateProps> = React.ComponentProps<T> & P;
 
-export const predicateHoc = <
+export const doNotAppearPredicateHoc = <
 	T extends React.ComponentType<any>,
 	P extends PredicateProps,
 >(
@@ -19,7 +19,7 @@ export const predicateHoc = <
 ): React.ComponentType<WithPredicateProps<T, P>> => {
 
 	const result = function (props: WithPredicateProps<T, P>): React.ReactElement | null {
-		if (predicate(props)) return props.slotDoNotMount || null;
+		if (predicate(props)) return props.slotDoNotAppear || null;
 		return <WrappedComponent {...props} />;
 	}
 
@@ -27,20 +27,20 @@ export const predicateHoc = <
 	return result;
 }
 
-interface MountBranchProps extends PredicateProps {
-	doNotMount?: boolean;
+interface ConditionalBranchProps extends PredicateProps {
+	doNotAppear?: boolean;
 }
 
-type WithMountBranchProps<T extends React.ComponentType<any>> = React.ComponentProps<T> & MountBranchProps;
+type WithConditionalBranchProps<T extends React.ComponentType<any>> = React.ComponentProps<T> & ConditionalBranchProps;
 
-// частный случай predicateHoc
-export const mountBranchHoc = <
+// частный случай doNotAppearPredicateHoc
+export const doNotAppearConditionHoc = <
 	T extends React.ComponentType<any>,
 >(
 	WrappedComponent: T,
-): React.ComponentType<WithMountBranchProps<T>> => {
+): React.ComponentType<WithConditionalBranchProps<T>> => {
 
-	const result = predicateHoc<T, MountBranchProps>(WrappedComponent, (props) => props.doNotMount);
+	const result = doNotAppearPredicateHoc<T, ConditionalBranchProps>(WrappedComponent, (props) => props.doNotAppear);
 	result.displayName = `mountBranchHoc(${getComponentName(WrappedComponent)})`;
 	return result;
 };

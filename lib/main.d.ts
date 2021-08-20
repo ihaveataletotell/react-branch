@@ -1,12 +1,12 @@
 import * as React from 'react';
-import * as vcLib from '../src/components';
-import * as hocs from '../src/hocs';
+import * as rbcComponents from '../src/components';
+import * as rbcHocs from '../src/hocs';
 
-declare namespace VC {
+declare namespace RBC {
 	interface StyledProps extends WrapProps, WithClass, WithStyle, WithSlot {
 	}
 
-	interface FullProps<T extends HTMLElement = HTMLDivElement> extends WrapProps, React.HTMLAttributes<T>, WithRootRef<T> {
+	interface MainProps<T extends HTMLElement = HTMLDivElement> extends WrapProps, React.HTMLAttributes<T>, WithRootRef<T> {
 		tagName?: string;
 	}
 
@@ -34,22 +34,25 @@ declare namespace VC {
 		slotDoNotRender?: React.ReactNode;
 	}
 
-	interface BranchProps {
+	interface WithConditionProps {
+		condition?: boolean;
+	}
+
+	interface BranchProps extends Required<WithConditionProps> {
 		children: [React.ReactNode, React.ReactNode];
-		if: boolean;
 	}
 }
 
-declare namespace VC {
-	export const Styled = vcLib.VCStyled;
-	export const Wrap = vcLib.VCWrap;
-	export const Full = vcLib.VCFull;
-	export const IfChildren = vcLib.VCIfChildren;
-	export const Branch = vcLib.VCBranch;
+declare namespace RBC {
+	// нужно синхронизировать с src/index
+	export const Wrap = rbcComponents.CCWrap;
+	export const Main = rbcComponents.CCMain;
+	export const IfChildren = rbcComponents.CCIfChildren;
+	export const IfElse = rbcComponents.CCIfElse;
 
-	export const hocPredicate = hocs.predicateHoc;
-	export const hocMountBranch = hocs.mountBranchHoc;
+	export const hocDoNotAppearPredicate = rbcHocs.doNotAppearPredicateHoc;
+	export const hocDoNotAppearCondition = rbcHocs.doNotAppearConditionHoc;
 }
 
-export = VC;
-export as namespace VC;
+export = RBC;
+export as namespace RBC;

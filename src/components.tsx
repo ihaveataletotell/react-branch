@@ -1,28 +1,16 @@
 import * as React from 'react';
-import * as VC from '../lib/main';
+import * as RBC from '../lib/main';
 
 // Если doNotRender == true, для всех чайлдов компонента:
 // будет выполнен вызов React.createElement
 // не будет создан их this (если это класс)
 // не будут вызваны методы жизненного цикла
-function VisualComponentWrapper(props: VC.WrapProps): React.ReactNode | null {
+function ConditionalComponentWrapper(props: RBC.WrapProps): React.ReactNode | null {
 	if (props.doNotRender) return props.slotDoNotRender || null;
 	return props.children;
 }
 
-function VisualComponentStyled(props: VC.StyledProps): React.ReactNode | null {
-	if (props.doNotRender) return props.slotDoNotRender || null;
-
-	return (
-		<div
-			children={props.children}
-			className={props.className}
-			style={props.style}
-		/>
-	);
-}
-
-function VisualComponentFull(props: VC.FullProps): React.ReactNode | null {
+function ConditionalComponent(props: RBC.MainProps): React.ReactNode | null {
 	if (props.doNotRender) return props.slotDoNotRender || null;
 
 	const DynamicJsxConstructor: any = (props.tagName || 'div');
@@ -37,21 +25,20 @@ function VisualComponentFull(props: VC.FullProps): React.ReactNode | null {
 	);
 }
 
-function VisualComponentIfChildren(props: VC.StyledProps): React.ReactElement | null {
+function ConditionalComponentIfChildren(props: RBC.MainProps): React.ReactElement | null {
 	if (!props.children) return null;
 
 	return (
-		<VCStyled {...props} />
+		<CCMain {...props} />
 	);
 }
 
-function VisualComponentBranch(props: VC.BranchProps): React.ReactNode {
-	if (props.if) return props.children[0];
+function ConditionalComponentBranch(props: RBC.BranchProps): React.ReactNode {
+	if (props.condition) return props.children[0];
 	return props.children[1];
 }
 
-export const VCWrap = VisualComponentWrapper;
-export const VCStyled = React.memo(VisualComponentStyled as React.FunctionComponent<VC.StyledProps>);
-export const VCFull = React.memo(VisualComponentFull as React.FunctionComponent<VC.FullProps>);
-export const VCIfChildren = VisualComponentIfChildren;
-export const VCBranch = VisualComponentBranch;
+export const CCWrap = ConditionalComponentWrapper;
+export const CCMain = React.memo(ConditionalComponent as React.FunctionComponent<RBC.MainProps>);
+export const CCIfChildren = ConditionalComponentIfChildren;
+export const CCIfElse = ConditionalComponentBranch;

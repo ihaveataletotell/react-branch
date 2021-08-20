@@ -1,11 +1,10 @@
-import * as vcLib from './components';
-import * as hocs from './hocs';
+import * as rbcComponents from './components';
+import * as rbcHocs from './hocs';
 
-export const Styled = vcLib.VCStyled;
-export const Wrap = vcLib.VCWrap;
-export const Full = vcLib.VCFull;
-export const IfChildren = vcLib.VCIfChildren;
-export const Branch = vcLib.VCBranch;
+export const Wrap = rbcComponents.CCWrap;
+export const Main = rbcComponents.CCMain;
+export const IfChildren = rbcComponents.CCIfChildren;
+export const IfElse = rbcComponents.CCIfElse;
 
-export const hocPredicate = hocs.predicateHoc;
-export const hocMountBranch = hocs.mountBranchHoc;
+export const hocDoNotAppearPredicate = rbcHocs.doNotAppearPredicateHoc;
+export const hocDoNotAppearCondition = rbcHocs.doNotAppearConditionHoc;
