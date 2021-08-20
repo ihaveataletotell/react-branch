@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {VC} from 'src';
+import {VC} from '../src';
 
 declare namespace VC {
 	interface StyledProps extends WrapProps, WithClass, WithStyle, WithSlot {
