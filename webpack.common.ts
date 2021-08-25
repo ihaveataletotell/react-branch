@@ -24,6 +24,8 @@ export const getJsMinimizer = (product: Types.Product): Webpack.WebpackPluginIns
 			extractComments: false,
 			parallel: false,
 			terserOptions: {
+				keep_fnames: true,
+				keep_classnames: true,
 				output: {
 					comments: false,
 				},
