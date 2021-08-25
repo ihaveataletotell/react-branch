@@ -1,5 +1,5 @@
 {
-  "name": "@drunk-coachman/react-branch",
+  "name": "react-branch",
   "version": "1.0.3",
   "description": "React helper conditional components for convenient and declarative development",
   "main": "lib/main.js",
@@ -11,12 +11,17 @@
   },
   "keywords": [
     "react",
-    "branch",
     "jsx",
-    "declarative",
-    "condition",
+    "conditional",
     "rendering",
-    "if-else"
+    "conditional-rendering",
+    "if-else",
+    "v-if",
+    "ng-if",
+    "react-conditional-rendering",
+    "branch",
+    "declarative",
+    "condition"
   ],
   "author": {
     "name": "Maxim Odorodko",
