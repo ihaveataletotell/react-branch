@@ -1,24 +1,19 @@
 import * as React from 'react';
+import * as RB from '../lib/main';
 
 const getComponentName = (Component: React.ComponentType): string => {
 	return Component.name || Component.displayName || 'Component';
 }
 
-interface PredicateProps {
-	slotDoNotAppear?: React.ReactNode;
-}
-
-type WithPredicateProps<T extends React.ComponentType<any>, P extends PredicateProps> = React.ComponentProps<T> & P;
-
-export const doNotAppearPredicateHoc = <
+export const doNotAppearPredicateHoc: RB.DoNotAppearPredicateHocT = <
 	T extends React.ComponentType<any>,
-	P extends PredicateProps,
+	P extends RB.PredicateProps,
 >(
 	WrappedComponent: T,
-	predicate: (props: WithPredicateProps<T, P>) => boolean,
-): React.ComponentType<WithPredicateProps<T, P>> => {
+	predicate: (props: RB.WithPredicateProps<T, P>) => boolean,
+): React.ComponentType<RB.WithPredicateProps<T, P>> => {
 
-	const result = function (props: WithPredicateProps<T, P>): React.ReactElement | null {
+	const result = function (props: RB.WithPredicateProps<T, P>): React.ReactElement | null {
 		if (predicate(props)) return props.slotDoNotAppear || null;
 		return <WrappedComponent {...props} />;
 	}
@@ -27,20 +22,14 @@ export const doNotAppearPredicateHoc = <
 	return result;
 }
 
-interface ConditionalBranchProps extends PredicateProps {
-	doNotAppear?: boolean;
-}
-
-type WithConditionalBranchProps<T extends React.ComponentType<any>> = React.ComponentProps<T> & ConditionalBranchProps;
-
 // частный случай doNotAppearPredicateHoc
-export const doNotAppearConditionHoc = <
+export const doNotAppearConditionHoc: RB.DoNotAppearConditionHocT = <
 	T extends React.ComponentType<any>,
 >(
 	WrappedComponent: T,
-): React.ComponentType<WithConditionalBranchProps<T>> => {
+): React.ComponentType<RB.WithConditionalBranchProps<T>> => {
 
-	const result = doNotAppearPredicateHoc<T, ConditionalBranchProps>(WrappedComponent, (props) => props.doNotAppear);
+	const result = doNotAppearPredicateHoc<T, RB.ConditionalBranchProps>(WrappedComponent, (props) => props.doNotAppear);
 	result.displayName = `mountBranchHoc(${getComponentName(WrappedComponent)})`;
 	return result;
 };

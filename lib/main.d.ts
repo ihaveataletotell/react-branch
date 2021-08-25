@@ -1,10 +1,7 @@
 import * as React from 'react';
-import * as rbcComponents from '../src/components';
-import * as rbcHocs from '../src/hocs';
 
-declare namespace RBC {
-	interface StyledProps extends WrapProps, WithClass, WithStyle, WithSlot {
-	}
+declare namespace RB {
+	interface StyledProps extends WrapProps, WithClass, WithStyle, WithSlot {}
 
 	interface MainProps<T extends HTMLElement = HTMLDivElement> extends WrapProps, React.HTMLAttributes<T>, WithRootRef<T> {
 		tagName?: string;
@@ -41,18 +38,46 @@ declare namespace RBC {
 	interface BranchProps extends Required<WithConditionProps> {
 		children: [React.ReactNode, React.ReactNode];
 	}
+
+	interface PredicateProps {
+		slotDoNotAppear?: React.ReactNode;
+	}
+
+	type WithPredicateProps<
+		T extends React.ComponentType<any>,
+		P extends PredicateProps,
+	> = React.ComponentProps<T> & P;
+
+	type DoNotAppearPredicateHocT = <
+		T extends React.ComponentType<any>,
+		P extends PredicateProps,
+	>(
+		WrappedComponent: T,
+		predicate: (props: WithPredicateProps<T, P>) => boolean,
+	) => React.ComponentType<WithPredicateProps<T, P>>;
+
+	interface ConditionalBranchProps extends PredicateProps {
+		doNotAppear?: boolean;
+	}
+
+	type WithConditionalBranchProps<T extends React.ComponentType<any>> = React.ComponentProps<T> & ConditionalBranchProps;
+
+	type DoNotAppearConditionHocT = <
+		T extends React.ComponentType<any>,
+	>(
+		WrappedComponent: T,
+	) => React.ComponentType<RB.WithConditionalBranchProps<T>>;
 }
 
-declare namespace RBC {
-	// нужно синхронизировать с src/index
-	export const Wrap = rbcComponents.CCWrap;
-	export const Main = rbcComponents.CCMain;
-	export const IfChildren = rbcComponents.CCIfChildren;
-	export const IfElse = rbcComponents.CCIfElse;
+declare namespace RB {
+	export const Wrap: React.FunctionComponent<RB.WrapProps>;
+	export const Main: React.FunctionComponent<RB.MainProps>;
+	export const IfChildren: React.FunctionComponent<RB.MainProps>;
+	export const IfElse: React.FunctionComponent<RB.BranchProps>;
 
-	export const hocDoNotAppearPredicate = rbcHocs.doNotAppearPredicateHoc;
-	export const hocDoNotAppearCondition = rbcHocs.doNotAppearConditionHoc;
+	export const hocDoNotAppearPredicate: RB.DoNotAppearPredicateHocT;
+	export const hocDoNotAppearCondition: RB.DoNotAppearConditionHocT;
 }
 
-export = RBC;
-export as namespace RBC;
+export = RB;
+// export as namespace RB;

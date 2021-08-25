@@ -1,10 +1,11 @@
-import * as rbcComponents from './components';
-import * as rbcHocs from './hocs';
+import * as rbComponents from './components';
+import * as rbHocs from './hocs';
 
-export const Wrap = rbcComponents.CCWrap;
-export const Main = rbcComponents.CCMain;
-export const IfChildren = rbcComponents.CCIfChildren;
-export const IfElse = rbcComponents.CCIfElse;
+// нужно синхронизировать с lib/main.d.ts
+export const Wrap = rbComponents.CCWrap;
+export const Main = rbComponents.CCMain;
+export const IfChildren = rbComponents.CCIfChildren;
+export const IfElse = rbComponents.CCIfElse;
 
-export const hocDoNotAppearPredicate = rbcHocs.doNotAppearPredicateHoc;
-export const hocDoNotAppearCondition = rbcHocs.doNotAppearConditionHoc;
+export const hocDoNotAppearPredicate = rbHocs.doNotAppearPredicateHoc;
+export const hocDoNotAppearCondition = rbHocs.doNotAppearConditionHoc;
