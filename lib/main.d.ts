@@ -86,4 +86,3 @@ declare namespace RB {
 }
 
 export = RB;
-// export as namespace RB;
