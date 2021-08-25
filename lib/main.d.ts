@@ -67,16 +67,22 @@ declare namespace RB {
 	>(
 		WrappedComponent: T,
 	) => React.ComponentType<RB.WithConditionalBranchProps<T>>;
+
+	type GetComponentNameT = (Component: React.ComponentType) => string;
 }
 
 declare namespace RB {
-	export const Wrap: React.FunctionComponent<RB.WrapProps>;
-	export const Main: React.FunctionComponent<RB.MainProps>;
-	export const IfChildren: React.FunctionComponent<RB.MainProps>;
-	export const IfElse: React.FunctionComponent<RB.BranchProps>;
+	declare const Wrap: React.FunctionComponent<RB.WrapProps>;
+	declare const Main: React.FunctionComponent<RB.MainProps>;
+	declare const IfChildren: React.FunctionComponent<RB.MainProps>;
+	declare const IfElse: React.FunctionComponent<RB.BranchProps>;
 
-	export const hocDoNotAppearPredicate: RB.DoNotAppearPredicateHocT;
-	export const hocDoNotAppearCondition: RB.DoNotAppearConditionHocT;
+	declare const hocDoNotAppearPredicate: RB.DoNotAppearPredicateHocT;
+	declare const hocDoNotAppearCondition: RB.DoNotAppearConditionHocT;
+
+	declare class GetComponentName {
+		static set method(method: RB.GetComponentNameT);
+	}
 }
 
 export = RB;

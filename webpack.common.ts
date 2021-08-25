@@ -20,12 +20,10 @@ export const getRules = (product: Types.Product, env: Types.ExportEnv, argv: Typ
 export const getJsMinimizer = (product: Types.Product): Webpack.WebpackPluginInstance[] => {
 	return [
 		new TerserPlugin({
-			// Выключение лицензионных файлов.
 			extractComments: false,
 			parallel: false,
 			terserOptions: {
-				keep_fnames: true,
-				keep_classnames: true,
+				// keep_fnames: /^Conditional/,
 				output: {
 					comments: false,
 				},

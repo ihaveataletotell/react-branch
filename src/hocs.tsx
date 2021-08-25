@@ -1,8 +1,20 @@
 import * as React from 'react';
 import * as RB from '../lib/main';
 
-const getComponentName = (Component: React.ComponentType): string => {
-	return Component.name || Component.displayName || 'Component';
+export class GetComponentName {
+	private static _method: RB.GetComponentNameT | undefined;
+
+	private static defaultMethod(Component: React.ComponentType): string {
+		return Component.name || Component.displayName || 'Component';
+	}
+
+	static set method(method: RB.GetComponentNameT) {
+		this._method = method;
+	}
+
+	static get method(): RB.GetComponentNameT {
+		return this._method || this.defaultMethod;
+	}
 }
 
 export const doNotAppearPredicateHoc: RB.DoNotAppearPredicateHocT = <
@@ -18,7 +30,7 @@ export const doNotAppearPredicateHoc: RB.DoNotAppearPredicateHocT = <
 		return <WrappedComponent {...props} />;
 	}
 
-	result.displayName = `predicateHoc(${getComponentName(WrappedComponent)})`;
+	result.displayName = `ReactBranch.hocDoNotAppearPredicate(${GetComponentName.method(WrappedComponent)})`;
 	return result;
 }
 
@@ -30,6 +42,6 @@ export const doNotAppearConditionHoc: RB.DoNotAppearConditionHocT = <
 ): React.ComponentType<RB.WithConditionalBranchProps<T>> => {
 
 	const result = doNotAppearPredicateHoc<T, RB.ConditionalBranchProps>(WrappedComponent, (props) => props.doNotAppear);
-	result.displayName = `mountBranchHoc(${getComponentName(WrappedComponent)})`;
+	result.displayName = `ReactBranch.hocDoNotAppearCondition(${GetComponentName.method(WrappedComponent)})`;
 	return result;
 };
